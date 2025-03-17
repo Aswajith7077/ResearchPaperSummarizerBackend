@@ -40,6 +40,17 @@ async def check_refresh_token(refresh_token: str):
         return False
 
 
+async def update_login(session,user_data: UserDB):
+    try:
+        temp = session.exec(select(UserDB).where(UserDB.username == user_data.username)).one()
+        session.delete(temp)
+        session.add(user_data)
+        session.commit()
+        session.refresh(user_data)
+        return True,"Updation Successful"
+    except Exception as e:
+        return False,e.args
+
 class Authenticate:
 
     def generate_access_token(self, data: dict):

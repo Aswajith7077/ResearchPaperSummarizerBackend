@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.internal import auth
-from app.routers import users
+from app.routers import users,reviewer
 from fastapi.middleware.cors import CORSMiddleware
 from config.connection import create_tables, engine
 
@@ -19,6 +19,7 @@ app.add_middleware(
 
 app.include_router(auth.router)
 app.include_router(users.router)
+app.include_router(reviewer.router)
 
 @app.on_event("startup")
 async def startup():

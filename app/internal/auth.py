@@ -1,10 +1,11 @@
 from fastapi import APIRouter, HTTPException, status, Header, Body
 from datetime import datetime, timezone
 
+from schemas.users import UserDB
 from config.connection import SessionDepends
 from models.users import UserLogin
 from typing import Annotated
-from services.auth import Authenticate, CurrentUser, check_refresh_token
+from services.auth import Authenticate, CurrentUser, check_refresh_token, update_login
 
 router = APIRouter(
     prefix="/auth",
@@ -46,8 +47,13 @@ async def login_user(session:SessionDepends,form_data: Annotated[UserLogin,Body(
                             detail="Either User not present or Invalid password")
 
     current_time = datetime.now(timezone.utc)
-    user_data = {**result.dict(), "lastlogin": current_time.isoformat()}
+    user_data = {**result.dict(), "lastlogin": current_time.isoformat(),"is_logged": True}
     access_token = a.generate_access_token(user_data)
     refresh_token = a.generate_refresh_token(user_data)
+
+    result_status,result = await update_login(session,UserDB(**user_data))
+    if not result_status:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail = result)
+
     return {"username": form_data.username, "fullname": user_data['fullname'], "access_token": access_token,
             "refresh_token": refresh_token}
