@@ -21,3 +21,10 @@ db_host = strip_out_quotations(os.getenv("DB_HOST"))
 db_name = strip_out_quotations(os.getenv('DB_NAME'))
 
 
+azure_client_id = os.getenv("AZURE_CLIENT_ID")
+azure_tenant_id = os.getenv("AZURE_TENANT_ID")
+azure_client_secret = os.getenv("AZURE_CLIENT_SECRET")
+azure_storage_url = os.getenv("AZURE_STORAGE_URL")
+azure_container_name = os.getenv("AZURE_CONTAINER_NAME")
+
+

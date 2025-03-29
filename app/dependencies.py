@@ -23,7 +23,7 @@ async def check_access_token(authorization=Header(None)):
     difference_in_minutes = difference.total_seconds() / 60
 
     if difference_in_minutes >= jwt_access_token_expiry_time_minutes:
-        raise ValueError("Token Expired")
+        raise HTTPException(status_code = status.HTTP_401_UNAUTHORIZED,detail="Access Token Expired")
     else:
         return result
 

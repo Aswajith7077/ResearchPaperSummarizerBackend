@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from app.internal import auth
 from app.routers import users,reviewer
 from fastapi.middleware.cors import CORSMiddleware
-from config.connection import create_tables, engine
+from config.dbconnection import create_tables, engine
 
 app = FastAPI(root_path = '/api')
 

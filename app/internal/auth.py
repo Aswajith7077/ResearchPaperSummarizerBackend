@@ -1,11 +1,11 @@
-from fastapi import APIRouter, HTTPException, status, Header, Body
+from fastapi import APIRouter, HTTPException, status, Header, Body,Query
 from datetime import datetime, timezone
 
 from schemas.users import UserDB
-from config.connection import SessionDepends
-from models.users import UserLogin
+from config.dbconnection import SessionDepends
+from models.users import UserLogin, Dummy
 from typing import Annotated
-from services.auth import Authenticate, CurrentUser, check_refresh_token, update_login
+from services.auth import Authenticate, CurrentUser, check_refresh_token, update_login,signout_user
 
 router = APIRouter(
     prefix="/auth",
@@ -14,6 +14,15 @@ router = APIRouter(
 
 a = Authenticate()
 c = CurrentUser()
+
+
+@router.post("/signout")
+async def signout(session:SessionDepends,user_id:Annotated[str,Query()],sample:Annotated[Dummy,Body()]):
+    result_status,result = await signout_user(current_user = user_id,session=session)
+    print(sample)
+    if not result_status:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail = result)
+    return result
 
 
 @router.get("/refresh")

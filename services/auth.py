@@ -5,12 +5,12 @@ from config.config import (
     jwt_refresh_token_secret_key,
 )
 from schemas.users import UserDB
-from sqlmodel import select
+from sqlmodel import select,Session
 from passlib.context import CryptContext
 from config.config import jwt_refresh_token_expiry_time_minutes
 import jwt
 
-from config.connection import SessionDepends
+from config.dbconnection import SessionDepends
 
 pwd_context = CryptContext(schemes=['bcrypt'])
 
@@ -25,6 +25,23 @@ class CurrentUser:
         result = jwt.decode(token, key=jwt_refresh_token_secret_key, algorithms=[jwt_encode_algorithm])
         return result
 
+async def signout_user(current_user:str,session:Session):
+    try:
+        result = session.exec(select(UserDB).where(UserDB.username == current_user)).first()
+        if not result:
+            raise Exception("User not found")
+
+        result_dict = dict(result)
+        result_dict.update({"is_logged":False})
+
+        new_one = UserDB(**result_dict)
+        session.delete(result)
+        session.add(new_one)
+        session.commit()
+        session.refresh(new_one)
+        return True,"Signout Successful"
+    except Exception as error:
+        return False,error.args
 
 async def check_refresh_token(refresh_token: str):
     c = CurrentUser()
@@ -47,6 +64,7 @@ async def update_login(session,user_data: UserDB):
         session.add(user_data)
         session.commit()
         session.refresh(user_data)
+
         return True,"Updation Successful"
     except Exception as e:
         return False,e.args

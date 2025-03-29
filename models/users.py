@@ -32,3 +32,5 @@ class UserLogin(BaseModel):
     username: str = Field(title='username')
     password: str = Field(title='password')
 
+class Dummy(BaseModel):
+    sample_string:str = Field(title="sample_string")

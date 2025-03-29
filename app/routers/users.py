@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import APIRouter, HTTPException,status,Query,Body
 from models.users import UserSignIn
 
-from config.connection import SessionDepends
+from config.dbconnection import SessionDepends
 from services.users import retrive_users, add_user, remove_user,update_users
 
 router = APIRouter(
