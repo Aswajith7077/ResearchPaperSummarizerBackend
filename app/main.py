@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from app.internal import auth
-from app.routers import users,reviewer
+from app.routers import users,reviewer,history
 from fastapi.middleware.cors import CORSMiddleware
 from config.dbconnection import create_tables, engine
 
-app = FastAPI(root_path = '/api')
+app = FastAPI()
 
 origins = ["*"]
 app.add_middleware(
@@ -17,9 +17,10 @@ app.add_middleware(
 
 
 
-app.include_router(auth.router)
-app.include_router(users.router)
-app.include_router(reviewer.router)
+app.include_router(auth.router,prefix="/api")
+app.include_router(users.router,prefix="/api")
+app.include_router(reviewer.router,prefix="/api")
+app.include_router(history.router,prefix="/api")
 
 @app.on_event("startup")
 async def startup():
@@ -32,4 +33,4 @@ async def shutdown():
     print("Database Connection Closed")
 @app.get("/")
 async def root():
-    return {"message":"ShopNex Welcomes You"}
+    return {"message":"CIDAR Welcomes You"}

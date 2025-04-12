@@ -29,7 +29,13 @@ clientCredentials = ClientSecretCredential(
 
 
 
-
+def list_blob():
+    try:
+        blob_service_client = BlobServiceClient(account_url=azure_storage_url, credential=clientCredentials)
+        container_client = blob_service_client.get_container_client(container=azure_container_name)
+        return [blob.name for blob in container_client.list_blobs()]
+    except Exception as e:
+        print(e)
 
 
 
@@ -71,4 +77,6 @@ time = "2025-03-29T10:54:02.704178+00:00"
 user_id = "voicedaswa"
 filename = "Evaluating_word_embedding_models_Methods_and_exper"
 
-get_data(time,user_id,filename)
+# get_data(time,user_id,filename)
+
+print(list_blob())
