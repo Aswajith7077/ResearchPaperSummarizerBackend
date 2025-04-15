@@ -7,8 +7,7 @@ from schemas.history import History, AssociatedFiles
 import uuid
 
 
-blob_service_client = BlobServiceClient(account_url=azure_storage_url, credential=clientCredentials)
-container_client = blob_service_client.get_container_client(container=azure_container_name)
+
 
 
 async def insert_history(session,user_id:str,title:str,files:list[str],summary):
@@ -23,6 +22,8 @@ async def insert_history(session,user_id:str,title:str,files:list[str],summary):
 
 
         # Blob insertion
+        blob_service_client = BlobServiceClient(account_url=azure_storage_url, credential=clientCredentials)
+        container_client = blob_service_client.get_container_client(container=azure_container_name)
 
         container_client.upload_blob(name=filename, data=summary)
 
@@ -61,6 +62,8 @@ async def get_history_file(session,id):
         result = session.exec(select(History).where(History.id == id)).first()
         if result is None:
             raise Exception(f"History with id {id} not found.")
+        blob_service_client = BlobServiceClient(account_url=azure_storage_url, credential=clientCredentials)
+        container_client = blob_service_client.get_container_client(container=azure_container_name)
 
         data = container_client.get_blob_client(blob = result.filename).download_blob().readall()
 

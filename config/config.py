@@ -20,6 +20,7 @@ db_user = strip_out_quotations(os.getenv("DB_USER"))
 db_host = strip_out_quotations(os.getenv("DB_HOST"))
 db_name = strip_out_quotations(os.getenv('DB_NAME'))
 
+serpapi = os.getenv("SERPAPI")
 
 azure_client_id = os.getenv("AZURE_CLIENT_ID")
 azure_tenant_id = os.getenv("AZURE_TENANT_ID")

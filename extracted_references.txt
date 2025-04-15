@@ -1,0 +1,33 @@
+References
+[1] N. F. N. Suzi Seroja Sarnin, Wan Nor Syafizan W. Muhamad, "Performance Evaluation of Phase
+Shift Keying Modulation Technique Using BCH Code, Cyclic Code and Hamming Code
+Through AWGN Channel Model in Communication System," IEEE Transactions on
+Communications, 2010.
+[2] K. J. Hole, "A comparison of trellis modules for binary convolutional codes," IEEE Transactions
+on Communications, vol. 46, no. 10, pp. 1245-1249, 1998.
+[3] R. K. P. P. Dayal, "Implementation of Reed-Solomon CODEC for IEEE 802.16 network using
+VHDL code," 2014 International Conference on Reliability Optimization and Information
+Technology (ICROIT), pp. 452-455, 2014.
+[4] G. D. Rovera, M. Abgrall, P. Uhrich, P. Defraigne, B. Bertrand, and Ieee, "GNSS antenna
+multipath effects," in European Frequency and Time Forum (EFTF), Torino, ITALY, Apr 10-
+12 2018, NEW YORK: Ieee, 2018, pp. 208-212.
+[5] R. C. Smith and R. C. Lange, "Signal to noise ratio," (in English), Crit. Rev. Diagn. Imaging,
+Article vol. 42, no. 2, pp. 135-140, 2001.
+[6] K. Yamaguchi and H. Imai, "Construction of unequal error protecting convolutional codes from
+low rate convolutional codes," (in English), Proceedings. 1994 IEEE International Symposium
+on Information Theory (Cat. No.94CH3467-8), Conference Paper pp. 275-275, 1994 1994.
+[7] P. Loskot and N. C. Beaulieu, "A family of low complexity adaptive binary linear block codes,"
+(in English), IEEE Globecom 2006, Conference Paper pp. 4662-4667.
+[8] D. E. Lazic, T. Beth, S. Egner, Ieee, and Ieee, "Constrained capacity of the AWGN channel," in
+IEEE International Symposium on Information Theory, Mit, Cambridge, Ma, Aug 16-22 1998,
+NEW YORK: Ieee, 1998, pp. 237-237.
+[9] Y. Tanaka, H. Harashima, and H. Miyakawa, "A simple method for improvement of the error
+probability performance of PSK," (in English), Trans. Inst. Electron. Commun. Eng. Jpn. E,
+Engl. (Japan), vol. E61, no. 7, pp. 553-554, July 1978.
+[10] G. Hori and S. Sagayama, "Variant of Viterbi algorithm based on p-Norm," (in English), 2017
+22nd International Conference on Digital Signal Processing (DSP), Conference Paper pp. 5,
+2017.
+[11] A. Pavlidis, A. Arapoyianni, and D. Loukas, "Fully-digital, highly-modular architecture of a
+Hamming-like neural network," (in English), 9th European Signal Processing Conference
+(EUSIPCO 1998), Conference Paper pp. 4, 1998.
+158
